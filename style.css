@@ -1,0 +1,13 @@
+.container {
+  background-image: url("/IMG_8819.JPG");
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border-radius: 10px;
+  padding: 15px 25px;
+}
+.js-toggle-unit:hover {
+  background-color: #111;
+  color: #fff;
+}
