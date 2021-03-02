@@ -47,6 +47,10 @@ switcher.forEach(function (item) {
   item.addEventListener("click", toggleUnit);
 });
 
+window.addEventListener("load", (event) => {
+  getWeatherFromLocation();
+});
+
 function toggleUnit(event) {
   let clickTarget = event.target.classList;
   if (clickTarget.contains("js-celsius")) {
@@ -85,15 +89,18 @@ function handleClick(event) {
   event.preventDefault();
   console.log(event.currentTarget.id);
   if (event.currentTarget.id === "pin-button") {
-    navigator.geolocation.getCurrentPosition((position) => {
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
-      let apiUrl = `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
-      axios.get(apiUrl).then(showWeather);
-    });
+    getWeatherFromLocation();
   } else {
     let city = document.querySelector("#search-location").value;
     let apiUrl = `${baseUrl}?q=${city}&appid=${apiKey}&units=${unitSystem}`;
     axios.get(apiUrl).then(showWeather);
   }
+}
+function getWeatherFromLocation() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let apiUrl = `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
+    axios.get(apiUrl).then(showWeather);
+  });
 }
