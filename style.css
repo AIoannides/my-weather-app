@@ -11,3 +11,10 @@
   background-color: #111;
   color: #fff;
 }
+
+#current-date {
+  margin-top: 0;
+}
+#cities {
+  margin-bottom: 0;
+}
