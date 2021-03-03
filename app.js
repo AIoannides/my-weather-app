@@ -38,7 +38,6 @@ let findButton = document.querySelector("#find-city");
 let unitSystem = "metric";
 let unit = "°C";
 
-console.log(unit);
 pinButton.addEventListener("click", handleClick);
 findButton.addEventListener("click", handleClick);
 
@@ -63,17 +62,14 @@ function toggleUnit(event) {
 }
 
 function showWeather(response) {
-  console.log(response);
   document.querySelector("p#cities").innerHTML = response.data.name;
   let temperature = Math.round(response.data.main.temp);
 
   let temperatures = document.querySelectorAll(".celsius");
-  console.log(temperatures);
 
   temperatures.forEach(
     (element) => (element.innerHTML = `${temperature}${unit}`)
   );
-
   let description = document.querySelector("#weather-description");
   description.innerHTML = response.data.weather[0].description;
   let windCondition = document.querySelector("#wind-speed");
@@ -87,7 +83,6 @@ function showWeather(response) {
 
 function handleClick(event) {
   event.preventDefault();
-  console.log(event.currentTarget.id);
   if (event.currentTarget.id === "pin-button") {
     getWeatherFromLocation();
   } else {
