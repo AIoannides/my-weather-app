@@ -21,3 +21,24 @@
 #weather-description {
   text-transform: capitalize;
 }
+.spinner-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 10%;
+  height: 10%;
+  display: block;
+  position: relative;
+  margin: 50px auto;
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}

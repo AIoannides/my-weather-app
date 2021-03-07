@@ -37,11 +37,16 @@ let pinButton = document.querySelector("#pin-button");
 let findButton = document.querySelector("#find-city");
 let unitSystem = "metric";
 let unit = "°C";
+let city = "";
+let latitude = "";
+let longitude = "";
+let loadingSpinner = document.querySelector("#loading");
 
 pinButton.addEventListener("click", handleClick);
 findButton.addEventListener("click", handleClick);
 
 let switcher = document.querySelectorAll(".js-toggle-unit");
+
 switcher.forEach(function (item) {
   item.addEventListener("click", toggleUnit);
 });
@@ -59,9 +64,11 @@ function toggleUnit(event) {
     unitSystem = "imperial";
     unit = "°F";
   }
+  searchApi(city, latitude, longitude);
 }
 
 function showWeather(response) {
+  loadingSpinner.style.display = "none";
   document.querySelector("p#cities").innerHTML = response.data.name;
   let temperature = Math.round(response.data.main.temp);
 
@@ -76,9 +83,9 @@ function showWeather(response) {
   windCondition.innerHTML = `${Math.round(response.data.wind.speed)}mph`;
   let humidityCondition = document.querySelector("#humidity");
   humidityCondition.innerHTML = `${response.data.main.humidity}%`;
-  let precipitation = Math.round(response.data.main.pressure);
-  let precipitationCondition = document.querySelector("#precipitation");
-  precipitationCondition.innerHTML = `${precipitation}%`;
+  let pressure = Math.round(response.data.main.pressure);
+  let pressureCondition = document.querySelector("#pressure");
+  pressureCondition.innerHTML = `${pressure}%`;
 }
 
 function handleClick(event) {
@@ -86,16 +93,28 @@ function handleClick(event) {
   if (event.currentTarget.id === "pin-button") {
     getWeatherFromLocation();
   } else {
-    let city = document.querySelector("#search-location").value;
-    let apiUrl = `${baseUrl}?q=${city}&appid=${apiKey}&units=${unitSystem}`;
-    axios.get(apiUrl).then(showWeather);
+    city = document.querySelector("#search-location").value;
+    latitude = "";
+    longitude = "";
+    searchApi(city);
   }
 }
+
 function getWeatherFromLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    let apiUrl = `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
-    axios.get(apiUrl).then(showWeather);
+    city = "";
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    searchApi(null, latitude, longitude);
   });
+}
+
+function searchApi(city, latitude, longitude) {
+  let apiUrl = "";
+  if (city) {
+    apiUrl = `${baseUrl}?q=${city}&appid=${apiKey}&units=${unitSystem}`;
+  } else {
+    apiUrl = `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
+  }
+  axios.get(apiUrl).then(showWeather);
 }
