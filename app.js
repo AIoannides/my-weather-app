@@ -57,7 +57,7 @@ function toggleUnit(event) {
     unit = "°C";
   } else {
     unitSystem = "imperial";
-    unit = "F";
+    unit = "°F";
   }
 }
 
