@@ -59,29 +59,20 @@
                 <div class="col-md-12">
                   <div class="card">
                     <div class="card-body border border-5">
-                      <button
-                        type="button"
-                        class="btn btn-link text-decoration-none js-toggle-unit js-celsius"
-                      >
-                        °C</button
-                      ><button
-                        type="button"
-                        class="btn btn-link text-decoration-none js-toggle-unit js-fahrenheit"
-                      >
-                        F
-                      </button>
-
                       <p class="card-text display-5" id="cities"></p>
                       <p class="card-text" id="current-date">
                         Tuesday, February 9 13:30
                       </p>
-
                       <p class="card-text display-4">
                         <i class="fas fa-thermometer-three-quarters me-3"></i>
                         <span
                           class="temperature celsius"
                           id="actualTemp"
                         ></span>
+                        <a class="js-toggle-unit js-celsius"> °C</a
+                        ><a type="button" class="js-toggle-unit js-fahrenheit">
+                          F
+                        </a>
                       </p>
                       <p class="card-text display-5" id="weather-description">
                         Clear Sky

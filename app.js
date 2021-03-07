@@ -57,6 +57,7 @@ window.addEventListener("load", (event) => {
 
 function toggleUnit(event) {
   let clickTarget = event.target.classList;
+  event.target.classList.toggle("active");
   if (clickTarget.contains("js-celsius")) {
     unitSystem = "metric";
     unit = "°C";
@@ -74,9 +75,7 @@ function showWeather(response) {
 
   let temperatures = document.querySelectorAll(".celsius");
 
-  temperatures.forEach(
-    (element) => (element.innerHTML = `${temperature}${unit}`)
-  );
+  temperatures.forEach((element) => (element.innerHTML = `${temperature}`));
   let description = document.querySelector("#weather-description");
   description.innerHTML = response.data.weather[0].description;
   let windCondition = document.querySelector("#wind-speed");

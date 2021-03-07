@@ -42,3 +42,13 @@
   -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
 }
+
+.js-toggle-unit {
+  text-decoration: none;
+  margin-right: 15px;
+  color: lightblue;
+}
+
+.js-toggle-unit.active {
+  color: blue;
+}
