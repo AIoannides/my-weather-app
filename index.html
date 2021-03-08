@@ -61,37 +61,36 @@
                     <div class="card-body border border-5">
                       <p class="card-text display-5" id="cities"></p>
                       <p class="card-text" id="current-date"></p>
-                      <span id="weatherIcon"></span>
-                      <span
-                        class="temperature celsius display-4"
-                        id="actualTemp"
-                      ></span>
-                      <div class="buttons">
-                        <a class="js-toggle-unit js-celsius">°C |</a>
-                        <a type="button" class="js-toggle-unit js-fahrenheit">
-                          °F
-                        </a>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <span id="weatherIcon"></span>
+                          <span
+                            class="temperature celsius display-4"
+                            id="actualTemp"
+                          ></span>
+                          <div class="buttons">
+                            <a class="js-toggle-unit js-celsius">°C |</a>
+                            <a
+                              type="button"
+                              class="js-toggle-unit js-fahrenheit"
+                              >°F</a
+                            >
+                          </div>
+                          <p class="card-text" id="weather-description">
+                            Clear Sky
+                          </p>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="weather-details">
+                            <div>
+                              Pressure:
+                              <span id="pressure"></span>
+                            </div>
+                            <div>Wind:<span id="wind-speed"></span></div>
+                            <div>Humidity:<span id="humidity"></span></div>
+                          </div>
+                        </div>
                       </div>
-                      <p class="card-text" id="weather-description">
-                        Clear Sky
-                      </p>
-                      <p class="card-text">
-                        <i class="fas fa-cloud-rain fa-3x me-3"></i>Pressure:
-                        <span id="pressure">23%</span>
-                      </p>
-                      <p class="card-text">
-                        <i class="fas fa-wind fa-3x me-3"></i>Wind:<span
-                          id="wind-speed"
-                        >
-                          7mph</span
-                        >
-                      </p>
-                      <p class="card-text">
-                        <i class="fas fa-umbrella fa-3x me-3"></i>Humidity:<span
-                          id="humidity"
-                          >59%</span
-                        >
-                      </p>
                     </div>
                   </div>
                 </div>

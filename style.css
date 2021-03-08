@@ -1,6 +1,8 @@
 body {
   position: relative;
   height: 100vh;
+  max-width: 750px;
+  margin: 0 auto;
 }
 .container {
   width: 100%;
@@ -10,7 +12,7 @@ body {
   padding: 15px 25px;
 }
 .buttons {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: top;
 }
 .js-toggle-unit:hover {
@@ -24,6 +26,7 @@ body {
 
 #current-date {
   margin-top: 0;
+  color: gray;
 }
 #cities {
   margin-bottom: 0;
@@ -68,4 +71,7 @@ footer {
   width: 100%;
   text-align: center;
   font-size: 10px;
+}
+.weather-details {
+  font-size: 12px;
 }
