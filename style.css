@@ -17,6 +17,7 @@ body {
 
 #current-date {
   margin-top: 0;
+  margin-bottom: 30px;
 }
 
 #weather-card {
@@ -32,6 +33,7 @@ body {
 
 #weather-description {
   text-transform: capitalize;
+  margin-top: 30px;
 }
 
 .spinner-container {
