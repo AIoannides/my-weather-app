@@ -1,37 +1,34 @@
-let now = new Date();
-let date = now.getDate();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "Octomber",
-  "November",
-  "December",
-];
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${formatHours(timestamp)}`;
+}
 
-let month = months[now.getMonth()];
-let hour = ("0" + now.getHours()).slice(-2);
-let year = now.getFullYear();
-let minutes = ("0" + now.getMinutes()).slice(-2);
-let currentDate = document.querySelector("p#current-date");
-currentDate.innerHTML = `${day} ${date} ${month},${year} ${hour}:${minutes}`;
-let baseUrl = "https://api.openweathermap.org/data/2.5/weather";
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
+let currentDateElement = document.querySelector("#current-date");
+let baseUrl = "https://api.openweathermap.org/data/2.5/";
 let apiKey = "c0f3afe2be69a14ab9fb1d02ca6c2d47";
 let pinButton = document.querySelector("#pin-button");
 let findButton = document.querySelector("#find-city");
@@ -69,12 +66,15 @@ function toggleUnit(event) {
 }
 
 function showWeather(response) {
+  currentDateElement.innerHTML = formatDate(response.data.dt * 1000);
   loadingSpinner.style.display = "none";
   document.querySelector("p#cities").innerHTML = response.data.name;
   let temperature = Math.round(response.data.main.temp);
 
   let temperatures = document.querySelectorAll(".celsius");
-
+  document.querySelector("#weatherIcon").innerHTML = `
+    <img src="http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png" />`;
+  response.data.weather[0].icon;
   temperatures.forEach((element) => (element.innerHTML = `${temperature}`));
   let description = document.querySelector("#weather-description");
   description.innerHTML = response.data.weather[0].description;
@@ -85,6 +85,32 @@ function showWeather(response) {
   let pressure = Math.round(response.data.main.pressure);
   let pressureCondition = document.querySelector("#pressure");
   pressureCondition.innerHTML = `${pressure}%`;
+}
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2">
+      <h5>
+        ${formatHours(forecast.dt * 1000)}
+      </h5>
+      <img
+        src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png"
+      />
+      <div class="weather-forecast-temperature">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `;
+  }
 }
 
 function handleClick(event) {
@@ -111,9 +137,12 @@ function getWeatherFromLocation() {
 function searchApi(city, latitude, longitude) {
   let apiUrl = "";
   if (city) {
-    apiUrl = `${baseUrl}?q=${city}&appid=${apiKey}&units=${unitSystem}`;
+    apiUrl = `${baseUrl}weather?q=${city}&appid=${apiKey}&units=${unitSystem}`;
+    apiUrlForecast = `${baseUrl}forecast?q=${city}&appid=${apiKey}&units=${unitSystem}`;
   } else {
-    apiUrl = `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
+    apiUrl = `${baseUrl}weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
+    apiUrlForecast = `${baseUrl}forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
   }
   axios.get(apiUrl).then(showWeather);
+  axios.get(apiUrlForecast).then(displayForecast);
 }

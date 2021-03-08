@@ -19,7 +19,7 @@
     <title>Weather App - Wireframe</title>
   </head>
   <body>
-    <div class="container mt-3 font-monospace">
+    <div class="container font-monospace">
       <div class="card bg-transparent">
         <div class="card-body">
           <div class="row">
@@ -60,21 +60,19 @@
                   <div class="card">
                     <div class="card-body border border-5">
                       <p class="card-text display-5" id="cities"></p>
-                      <p class="card-text" id="current-date">
-                        Tuesday, February 9 13:30
-                      </p>
-                      <p class="card-text display-4">
-                        <i class="fas fa-thermometer-three-quarters me-3"></i>
-                        <span
-                          class="temperature celsius"
-                          id="actualTemp"
-                        ></span>
-                        <a class="js-toggle-unit js-celsius"> °C</a
-                        ><a type="button" class="js-toggle-unit js-fahrenheit">
-                          F
+                      <p class="card-text" id="current-date"></p>
+                      <span id="weatherIcon"></span>
+                      <span
+                        class="temperature celsius display-4"
+                        id="actualTemp"
+                      ></span>
+                      <div class="buttons">
+                        <a class="js-toggle-unit js-celsius">°C |</a>
+                        <a type="button" class="js-toggle-unit js-fahrenheit">
+                          °F
                         </a>
-                      </p>
-                      <p class="card-text display-5" id="weather-description">
+                      </div>
+                      <p class="card-text" id="weather-description">
                         Clear Sky
                       </p>
                       <p class="card-text">
@@ -98,51 +96,12 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="row border border-5 ms-1 mt-3 p-2">
-              <div class="col-sm-6 col-md-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">17:00</p>
-                    <i class="fas fa-sun fa-2x"></i>
-                    <p class="card-text">1 °C</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">20:00</p>
-                    <i class="fas fa-poo-storm fa-2x"></i>
-                    <p class="card-text">-3 °C</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">23:00</p>
-                    <i class="fas fa-cloud-sun-rain fa-2x"></i>
-                    <p class="card-text">5 °C</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">02:00</p>
-                    <i class="fas fa-cloud-sun fa-2x"></i>
-                    <p class="card-text">8 °C</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">05:00</p>
-                    <i class="fas fa-cloud-sun fa-2x"></i>
-                    <p class="card-text">7 °C</p>
+              <div class="row mt-2">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body border border-5">
+                      <div class="row" id="forecast"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -150,17 +109,15 @@
           </div>
         </div>
       </div>
-      <div class="card-footer text-white">
-        <small
-          ><a
-            href="https://github.com/AIoannides/my-weather-app"
-            target="_blank"
-            >Open-source code</a
-          >
-          by A.A.Ioannides</small
-        >
-      </div>
     </div>
+    <footer>
+      <small
+        ><a href="https://github.com/AIoannides/my-weather-app" target="_blank"
+          >Open-source code</a
+        >
+        by A.A.Ioannides</small
+      >
+    </footer>
     <div id="loading" class="spinner-container">
       <svg
         aria-hidden="true"
