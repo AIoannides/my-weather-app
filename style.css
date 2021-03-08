@@ -9,14 +9,6 @@ body {
 .container {
   padding: 15px 25px;
 }
-.buttons {
-  display: inline-flex;
-  vertical-align: top;
-  color: #fff;
-}
-.js-toggle-unit:hover {
-  text-decoration: dotted;
-}
 
 .temperature {
   display: inline-block;
@@ -66,13 +58,17 @@ body {
 
 .js-toggle-unit {
   text-decoration: none;
-  margin-right: 15px;
+  margin-right: 8px;
+  color: #fff;
 }
 
-.js-toggle-unit.active {
-  color: darkblue;
+.js-toggle-unit:hover {
+  color: #0a58ca;
 }
 
+.float-left {
+  float: left;
+}
 footer {
   position: absolute;
   bottom: 10px;
@@ -83,4 +79,26 @@ footer {
 }
 .weather-details {
   font-size: 12px;
+}
+#weatherIcon {
+  margin-right: 5px;
+  height: 65px;
+  width: 65px;
+}
+#actualTemp {
+  color: #fff;
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 400;
+}
+.main-weather .buttons {
+  position: relative;
+  font-size: 16px;
+  top: -34px;
+  cursor: default;
+  color: #fff;
+}
+.main-weather .active {
+  color: #fff;
+  cursor: default;
 }
