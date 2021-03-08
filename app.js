@@ -30,6 +30,7 @@ function formatHours(timestamp) {
 let currentDateElement = document.querySelector("#current-date");
 let baseUrl = "https://api.openweathermap.org/data/2.5/";
 let apiKey = "c0f3afe2be69a14ab9fb1d02ca6c2d47";
+let imageApiUrl = "https://api.unsplash.com/photos/random";
 let pinButton = document.querySelector("#pin-button");
 let findButton = document.querySelector("#find-city");
 let unitSystem = "metric";
@@ -143,6 +144,25 @@ function searchApi(city, latitude, longitude) {
     apiUrl = `${baseUrl}weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
     apiUrlForecast = `${baseUrl}forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unitSystem}`;
   }
-  axios.get(apiUrl).then(showWeather);
+  axios.get(apiUrl).then((response) => {
+    showWeather(response);
+    getWeatherBackgroundImage(response);
+  });
   axios.get(apiUrlForecast).then(displayForecast);
+}
+
+function getWeatherBackgroundImage(response) {
+  axios
+    .get(imageApiUrl, {
+      params: {
+        client_id: "Dx3ChUgFi2vvI-jGy6sk0qNRLkzHyKccyZYhxRRBjAg",
+        query: response.data.weather[0].description,
+        orientation: "landscape",
+      },
+    })
+    .then((result) => {
+      document.querySelector(
+        "body"
+      ).style.backgroundImage = `url(${result.data.urls.full})`;
+    });
 }

@@ -3,17 +3,16 @@ body {
   height: 100vh;
   max-width: 750px;
   margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .container {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  border-radius: 10px;
   padding: 15px 25px;
 }
 .buttons {
   display: inline-flex;
   vertical-align: top;
+  color: #fff;
 }
 .js-toggle-unit:hover {
   text-decoration: dotted;
@@ -26,14 +25,23 @@ body {
 
 #current-date {
   margin-top: 0;
-  color: gray;
 }
+
+#weather-card {
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  opacity: 0.6;
+  color: #fff;
+  font-weight: bolder;
+}
+
 #cities {
   margin-bottom: 0;
 }
+
 #weather-description {
   text-transform: capitalize;
 }
+
 .spinner-container {
   width: 100vw;
   height: 100vh;
@@ -70,7 +78,8 @@ footer {
   bottom: 10px;
   width: 100%;
   text-align: center;
-  font-size: 10px;
+  font-size: 15px;
+  color: #fff;
 }
 .weather-details {
   font-size: 12px;
